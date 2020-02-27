@@ -55,5 +55,7 @@ we'll come back to this
 }
 
 h2{
-    text-align: center;
+    text-align: right;
+    direction: rtl;
+    padding-right: 20px;
 }
