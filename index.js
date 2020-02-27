@@ -2,7 +2,6 @@
 bugs to fix = decimal point with rtl writing lol
 if you click an operator and then equals its bad
 
-
 stretch material  - display answer as operators clicked */
 
 
@@ -56,11 +55,11 @@ function whichButton(event){
         if (total < 0) {
             total = Math.abs(total) + '-'
         }
+        
         screen.innerHTML = total
         entries = []
         tempNum = ""
     }
-
 }
 
 
