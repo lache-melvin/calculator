@@ -57,11 +57,30 @@ function whichButton(event){
             else if (symbol === 'x') {total *= nextNum}
             else if (symbol === '÷') {total /= nextNum}
         }
-        
-        screen.innerHTML = total
-        entries = []
-        tempNum = ""
+        if (total > 9999999999) {
+            var power = total.toString().split('').length - 1
+            total *= Math.pow(10, power)
+            total = total.toString()
+            screen.innerHTML = total.substring(0,10) + "x10^" + power
+        } 
+        else if (total < 0.000001) {
+            var numArr = total.toString().split('')
+            var negPower = 0;
+            for (digit of numArr) {
+                if (digit == 0) {
+                    negPower--
+                }
+            }
+            total = total.toString()
+            screen.innerHTML = total.substring(0,10) + "x10^" + negPower 
+        } 
+        else {
+            total = total.toString()
+            screen.innerHTML = total.substring(0,10)
+            entries = []
+            tempNum = ""
+        }
     }
 }
-
+           
 

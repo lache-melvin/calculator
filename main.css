@@ -55,7 +55,7 @@ we'll come back to this
     background-color: rgb(61, 61, 61);
     margin: 20px 18px 20px 10px;
     display: block;
-    height: 67px;
+    height: 100px;
 }
 
 h2{
@@ -63,6 +63,10 @@ h2{
     padding-right: 20px;
     color: white;
     font-size: 28;
+}
+#le-question {
+    color: white;
+    padding-left: 20px;
 }
 
 button{
