@@ -60,7 +60,6 @@ we'll come back to this
 
 h2{
     text-align: right;
-    direction: rtl;
     padding-right: 20px;
     color: white;
     font-size: 28;
@@ -76,9 +75,12 @@ button{
 }
 
 .tall{
-    height: 60px;
+    height: 65px;
 }
 
 .wide{
     width: 125;
+}
+.extraSpace {
+    margin-top: 6px;
 }

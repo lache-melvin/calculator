@@ -1,7 +1,12 @@
 /*
-bugs to fix = decimal point with rtl writing lol
 if you click an operator and then equals its bad
-
+straight away equals?
+cursor - move back and forward - 
+calculator memory?
+scientific mode - use my calc - q and ans on screen? - how it displays?
+arrows and numbers as input?
+syntax/math errors
+if operator that wasn't the first operator, delete it
 stretch material  - display answer as operators clicked */
 
 
@@ -43,17 +48,14 @@ function whichButton(event){
     // if clicks '='
     else {
         entries.push(tempNum)
-        var total = parseInt(entries[0])
+        var total = parseFloat(entries[0])
         for (var i = 1; i < entries.length; i += 2) {
             var symbol = entries[i]
-            var nextNum = parseInt(entries[i+1])
+            var nextNum = parseFloat(entries[i+1])
             if (symbol === '+') {total += nextNum}
             else if (symbol === '-') {total -= nextNum}
             else if (symbol === 'x') {total *= nextNum}
             else if (symbol === '÷') {total /= nextNum}
-        }
-        if (total < 0) {
-            total = Math.abs(total) + '-'
         }
         
         screen.innerHTML = total
