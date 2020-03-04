@@ -10,9 +10,9 @@ if operator that wasn't the first operator, delete it
 stretch material  - display answer as operators clicked */
 
 
-var entries = [];
+var question = "";
 var screen = document.getElementById('screen')
-var tempNum = "";   
+var questionScreen = document.getElementById('le-question')   
 
 var buttonArray = document.getElementsByTagName('button')
 
@@ -23,27 +23,26 @@ for(var i = 0; i < buttonArray.length; i++){
 function whichButton(event){
     var buttonClicked = event.target.innerHTML
 
-    // if entering number
-    if (!isNaN(parseInt(buttonClicked)) || buttonClicked === '.') {
-        tempNum += buttonClicked
-        screen.innerHTML = tempNum.substring(0,10)
+    // if entering question
+    
+
+    if (buttonClicked !== 'AC' && buttonClicked !== 'DEL' && buttonClicked !== '=') {
+        question += buttonClicked
+        questionScreen.innerHTML = question.substring(0,30)
     }
     // if clearing screen
-    else if (buttonClicked === 'AC' || buttonClicked === 'CE') {
-        if (buttonClicked === 'AC') {
-            entries = [];
-        }
-        tempNum = "";
+    else if (buttonClicked === 'AC' ) {       
+        question = "";
+        questionScreen.innerHTML = ""
         screen.innerHTML = ""
+
+    // if backspacing
+    } else if (buttonClicked === 'DEL') {
+            question = question.substr(0, question.length -1)
+            questionScreen.innerHTML = question
+        }
     }
 
-    // if entering operator
-    else if (buttonClicked === '+' || buttonClicked === '-' || buttonClicked === 'x' || buttonClicked === '÷') {
-        entries.push(tempNum)
-        entries.push(buttonClicked)
-        tempNum = ""
-        
-    }
 
     // if clicks '='
     else {
@@ -57,12 +56,14 @@ function whichButton(event){
             else if (symbol === 'x') {total *= nextNum}
             else if (symbol === '÷') {total /= nextNum}
         }
+        // if huge number make it x10^x
         if (total > 9999999999) {
-            var power = total.toString().split('').length - 1
+            var power = total.toString().length - 1
             total *= Math.pow(10, power)
             total = total.toString()
             screen.innerHTML = total.substring(0,10) + "x10^" + power
         } 
+        // if tiny number make it x10^-x
         else if (total < 0.000001) {
             var numArr = total.toString().split('')
             var negPower = 0;
@@ -74,6 +75,7 @@ function whichButton(event){
             total = total.toString()
             screen.innerHTML = total.substring(0,10) + "x10^" + negPower 
         } 
+        // if it will fit in the calculator just fine
         else {
             total = total.toString()
             screen.innerHTML = total.substring(0,10)
