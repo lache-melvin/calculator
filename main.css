@@ -83,8 +83,12 @@ button{
 }
 
 .wide{
-    width: 125;
+    width: 118px;
 }
 .extraSpace {
     margin-top: 6px;
+}
+
+.button-left {
+    margin-left: 10px;
 }
