@@ -24,10 +24,9 @@ function whichButton(event){
     var buttonClicked = event.target.innerHTML
 
     // if entering question
-    
-
     if (buttonClicked !== 'AC' && buttonClicked !== 'DEL' && buttonClicked !== '=') {
         question += buttonClicked
+        screen.innerHTML = ""
         questionScreen.innerHTML = question.substring(0,30)
     }
     // if clearing screen
@@ -40,22 +39,24 @@ function whichButton(event){
     } else if (buttonClicked === 'DEL') {
             question = question.substr(0, question.length -1)
             questionScreen.innerHTML = question
-        }
     }
-
 
     // if clicks '='
     else {
-        entries.push(tempNum)
-        var total = parseFloat(entries[0])
-        for (var i = 1; i < entries.length; i += 2) {
-            var symbol = entries[i]
-            var nextNum = parseFloat(entries[i+1])
-            if (symbol === '+') {total += nextNum}
-            else if (symbol === '-') {total -= nextNum}
-            else if (symbol === 'x') {total *= nextNum}
-            else if (symbol === '÷') {total /= nextNum}
-        }
+        question = question.replace("x", "*")
+        question = question.replace("÷", "/")
+        var total = eval(question)
+
+        // entries.push(tempNum)
+        // var total = parseFloat(entries[0])
+        // for (var i = 1; i < entries.length; i += 2) {
+        //     var symbol = entries[i]
+        //     var nextNum = parseFloat(entries[i+1])
+        //     if (symbol === '+') {total += nextNum}
+        //     else if (symbol === '-') {total -= nextNum}
+        //     else if (symbol === 'x') {total *= nextNum}
+        //     else if (symbol === '÷') {total /= nextNum}
+        // }
         // if huge number make it x10^x
         if (total > 9999999999) {
             var power = total.toString().length - 1
@@ -78,10 +79,9 @@ function whichButton(event){
         // if it will fit in the calculator just fine
         else {
             total = total.toString()
-            screen.innerHTML = total.substring(0,10)
-            entries = []
-            tempNum = ""
+            screen.innerHTML = total.substring(0,10) 
         }
+        question = ""
     }
 }
            
